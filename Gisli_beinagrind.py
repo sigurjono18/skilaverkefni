@@ -10,24 +10,29 @@ import random
 
 class Card():
     def __init__(self, rank=0, suit=""):
+
     # A constructor with the parameters rank (either a character or an integer) and suit (a character). 
     # Default values are 0 and '' (empty string). Note that you can use the type() function to check the type of a parameter. 
     # The internal representation for the rank is an integer in the range -13. 
     # The internal representation for the suit is a character: H, S, D or C. 
-        self.blank = True
-        self.rank = rank
-        self.suit = suit
-        if rank >= 0 and rank <= 13:
-            self.rank = rank   #rank can be from 1 - 13
-        else:
+        try: 
+            self.blank = True
+            self.rank = rank
+            self.suit = suit
+            if rank >= 0 and rank <= 13:
+                self.rank = rank   #rank can be from 1 - 13
+            else:
+                self.rank = 0
+
+            words = "HhSsDdCc"
+
+            if self.suit in words:
+                self.suit = suit   #suit can be  H, S, D or C. 
+            else:
+                self.suit = ""
+        except Exception:
             self.rank = 0
 
-        words = "HhSsDdCc"
-
-        if self.suit in words:
-            self.suit = suit   #suit can be  H, S, D or C. 
-        else:
-            self.suit = ""
 
     def is_blank(self):
         if self.rank == 0 or self.suit == "":
@@ -59,14 +64,32 @@ class Card():
     # The letters A,J,Q,K are printed for the ranks 1,11,12,13, respectively.
 
     # Method is_blank() that returns True if a card is blank, otherwise False.
-    pass
+
 
 class Deck():
+    def __init__(self):
+        self.cards = []
+        for i in range(1,53):
+            self.cards.append(int(i))
+        print(self.cards)
+
+    #def shuffle(deck):
+    #    for i in range(0, 53):
+    #        shuffle(deck) 
+
+
     # A constructor without any parameters. The constructor creates a deck of 52 cards.
     # Method __str__() for returning a string representation of a deck, consisting of 4 lines containing 13 cards each.
     # Method shuffle(). Shuffles the cards in the deck.
     # Method deal(). Deal a single card by returning the card that is removed off the top of the deck.
-    pass
+    #def shuffleDeck():
+    #    for i in range(0, 3):
+    #    shuffle(cardDeck)   # Python
+    def __str__(self):
+        return "{:>3}".format(self.cards[1])
+
+
+
 
 class PlayingHand():
     # A constructor without any parameters. The constructor creates a hand of 13 blank cards.
@@ -75,19 +98,21 @@ class PlayingHand():
     # A constant, NUMBER_CARDS, with value 13
     pass
 
-obj1 = Card(12,'h')
-print(obj1)
-
+#obj1 = Card(12,'h')
+#print(obj1)
+#deck = Deck()
+#print(deck)
+#deck.shuffle()
 # Main program and functions given:
-#def test_cards():
-#    card1 = Card()
-#    print(card1)
-#    card2 = Card(5,'s')
-#    print(card2)
-#    card3 = Card('Q','D')
-#    print(card3)
-#    card4 = Card('x', 7)
-#    print(card4)
+def test_cards():
+    card1 = Card()
+    print(card1)
+    card2 = Card(5,'s')
+    print(card2)
+    card3 = Card('Q','D')
+    print(card3)
+    card4 = Card('x', 7)
+    print(card4)
 
 #def print_4_hands(hand1, hand2, hand3, hand4):
 #    ''' Prints the 4 hands '''
@@ -116,8 +141,8 @@ print(obj1)
 #    print_4_hands(hand1, hand2, hand3, hand4)
 
 # The main program starts here
-#random.seed(10)
-#test_cards()
+random.seed(10)
+test_cards()
 #deck = Deck()
 #deck.shuffle()
 #print("The deck:")
