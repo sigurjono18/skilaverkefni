@@ -9,16 +9,25 @@
 import random
 
 class Card():
-    def __init__(self, rank=0, suit=""):
-
+    def __init__(self, rank="0", suit=""):
     # A constructor with the parameters rank (either a character or an integer) and suit (a character). 
     # Default values are 0 and '' (empty string). Note that you can use the type() function to check the type of a parameter. 
     # The internal representation for the rank is an integer in the range -13. 
     # The internal representation for the suit is a character: H, S, D or C. 
         try: 
+            if(type(rank) == int):   
+                #print("hello")
+                self.rank = rank
+
+            if(type(rank) == str):
+                rank_dict = {1:"A",11:"J",12:"Q",13:"K"}
+                for k, v in rank_dict.items():
+                    if rank in v:
+                        self.rank = k
+
             self.blank = True
-            self.rank = rank
             self.suit = suit
+            rank = self.rank
             if rank >= 0 and rank <= 13:
                 self.rank = rank   #rank can be from 1 - 13
             else:
